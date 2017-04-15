@@ -108,6 +108,7 @@ class MainViewModelImpl @Inject constructor(
         when (listState.get()) {
             MainContainer.ListState.EXPANDED -> {
                 listState.set(MainContainer.ListState.COLLAPSED)
+                icon.set(R.drawable.ic_keyboard_arrow_up)
                 onBackPressedCallback(true)
                 return
             }
