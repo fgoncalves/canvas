@@ -33,7 +33,7 @@ class MainViewModelImpl @Inject constructor(
         @ReadAssetsSchedulerTransformer val transformer: SchedulerTransformer) : MainViewModel {
     private val defaultStatusBarColor: Int = ContextCompat.getColor(context, R.color.black_50)
     private val icon: ObservableInt = ObservableInt(R.drawable.ic_keyboard_arrow_up)
-    private val listState: ObservableField<MainContainer.ListState> = ObservableField(MainContainer.ListState.EXPANDED)
+    private val listState: ObservableField<MainContainer.ListState?> = ObservableField()
     private val onPageChangeListener: ViewPager.OnPageChangeListener = object : ViewPager.OnPageChangeListener {
         override fun onPageScrollStateChanged(state: Int) {
 
@@ -86,7 +86,7 @@ class MainViewModelImpl @Inject constructor(
 
     override fun icon(): ObservableInt = icon
 
-    override fun listState(): ObservableField<MainContainer.ListState> = listState
+    override fun listState(): ObservableField<MainContainer.ListState?> = listState
 
     override fun imagesAdapter(): PagerAdapter = pagerAdapter
 
@@ -112,11 +112,7 @@ class MainViewModelImpl @Inject constructor(
                 onBackPressedCallback(true)
                 return
             }
-            MainContainer.ListState.COLLAPSED -> {
-                onBackPressedCallback(false)
-                return
-            }
-            else -> return
+            else -> onBackPressedCallback(false)
         }
     }
 

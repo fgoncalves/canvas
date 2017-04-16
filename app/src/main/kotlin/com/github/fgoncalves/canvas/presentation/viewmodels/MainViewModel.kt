@@ -20,7 +20,7 @@ interface MainViewModel {
 
     fun icon(): ObservableInt
 
-    fun listState(): ObservableField<MainContainer.ListState>
+    fun listState(): ObservableField<MainContainer.ListState?>
 
     fun onHeaderClicked(view: View)
 

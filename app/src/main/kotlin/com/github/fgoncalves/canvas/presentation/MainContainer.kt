@@ -57,10 +57,10 @@ class MainContainer(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) 
         })
     }
 
-    fun setListState(state: ListState) {
+    fun setListState(state: ListState?) {
         // Need to synchronize this somehow
 
-        if (state == internalListState) return
+        if (state == null || state == internalListState) return
 
 //        if (state == ListState.EXPANDING || state == ListState.COLLAPSING)
 

@@ -7,6 +7,7 @@ import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.view.Gravity
 import android.view.MenuItem
 import android.view.WindowManager
 import com.github.fgoncalves.canvas.databinding.ActivityMainBinding
@@ -16,6 +17,7 @@ import com.github.fgoncalves.canvas.di.PresentationModule
 
 
 class MainActivity : AppCompatActivity() {
+    private var drawer: DrawerLayout? = null
     private var toggle: ActionBarDrawerToggle? = null
     private val applicationComponent: ApplicationComponent? = CanvasApplication.component
     private var binding: ActivityMainBinding? = null
@@ -36,10 +38,10 @@ class MainActivity : AppCompatActivity() {
         val toolbar: Toolbar? = findViewById(R.id.toolbar) as Toolbar?
         if (toolbar != null) setSupportActionBar(toolbar)
 
-        val drawer: DrawerLayout? = findViewById(R.id.swatches_drawer) as DrawerLayout?
+        drawer = findViewById(R.id.swatches_drawer) as DrawerLayout?
         if (drawer != null) {
             toggle = ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close)
-            drawer.addDrawerListener(toggle!!)
+            drawer?.addDrawerListener(toggle!!)
         }
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -72,6 +74,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        if (drawer != null && drawer?.isDrawerOpen(Gravity.START) == true) {
+            drawer?.closeDrawer(Gravity.START)
+            return
+        }
         binding?.viewModel?.onBackPressed { handled -> if (!handled) super.onBackPressed() }
     }
 
