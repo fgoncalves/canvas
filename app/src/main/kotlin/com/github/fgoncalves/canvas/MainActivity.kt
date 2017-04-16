@@ -33,10 +33,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        binding.viewModel = presentationComponent?.getSwatchesListViewModel()
-        binding.viewModel.onCreate()
-        binding.viewModel.onColorPicked(this::setStatusBarColor)
-
         val toolbar: Toolbar? = findViewById(R.id.toolbar) as Toolbar?
         if (toolbar != null) setSupportActionBar(toolbar)
 
@@ -50,6 +46,13 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(true)
 
         this.binding = binding
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding!!.viewModel = presentationComponent?.getSwatchesListViewModel()
+        binding!!.viewModel.onCreate()
+        binding!!.viewModel.onColorPicked(this::setStatusBarColor)
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
