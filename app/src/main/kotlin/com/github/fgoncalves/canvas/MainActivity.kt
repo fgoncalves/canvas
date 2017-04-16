@@ -55,6 +55,11 @@ class MainActivity : AppCompatActivity() {
         binding!!.viewModel = presentationComponent?.getSwatchesListViewModel()
         binding!!.viewModel.onCreate()
         binding!!.viewModel.onColorPicked(this::setStatusBarColor)
+
+        if (drawer != null && applicationComponent?.getSettings()?.didWeBotherUserWithDrawer == false) {
+            drawer?.openDrawer(Gravity.START)
+            applicationComponent.getSettings().didWeBotherUserWithDrawer = true
+        }
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {

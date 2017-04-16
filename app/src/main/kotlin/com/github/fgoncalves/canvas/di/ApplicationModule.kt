@@ -1,6 +1,7 @@
 package com.github.fgoncalves.canvas.di
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.content.res.AssetManager
 import com.github.fgoncalves.canvas.data.ImageLoader
 import com.github.fgoncalves.canvas.data.ImageLoaderImpl
@@ -25,4 +26,7 @@ class ApplicationModule(val context: Context) {
 
     @Provides @Singleton @ReadAssetsSchedulerTransformer
     fun providesReadAssetsSchedulerTransformer(transformer: IoToUiSchedulerTransformer): SchedulerTransformer = transformer
+
+    @Provides @Singleton
+    fun providesSharedPreferences(@ApplicationContext context: Context): SharedPreferences = context.getSharedPreferences("canvas.sharedprefs", Context.MODE_PRIVATE)
 }

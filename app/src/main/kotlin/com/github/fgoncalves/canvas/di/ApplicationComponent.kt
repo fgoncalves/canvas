@@ -1,5 +1,6 @@
 package com.github.fgoncalves.canvas.di
 
+import com.github.fgoncalves.canvas.data.Settings
 import dagger.Component
 import javax.inject.Singleton
 
@@ -11,4 +12,6 @@ interface ApplicationComponent {
     fun plus(module: PresentationModule): PresentationComponent
 
     fun plus(module: PageScreenModule): PageScreenComponent
+
+    fun getSettings(): Settings
 }
