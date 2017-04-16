@@ -15,7 +15,7 @@ class ImageViewPagerAdapter @Inject constructor(fragmentManager: FragmentManager
     }
 
     override fun getItem(position: Int): Fragment {
-        return PageScreen(items[position])
+        return PageScreen.newInstance(items[position])
     }
 
     override fun getCount(): Int = items.size

@@ -11,7 +11,8 @@ import com.github.fgoncalves.canvas.di.PageScreenComponent
 import com.github.fgoncalves.canvas.di.PageScreenModule
 import com.github.fgoncalves.canvas.presentation.models.Page
 
-class PageScreen(val page: Page) : Fragment() {
+class PageScreen : Fragment() {
+    private lateinit var page: Page
     private var _component: PageScreenComponent? = null
     private var component: PageScreenComponent?
         get() {
@@ -23,6 +24,14 @@ class PageScreen(val page: Page) : Fragment() {
         set(value) {
             _component = null
         }
+
+    companion object {
+        fun newInstance(page: Page): PageScreen {
+            val screen = PageScreen()
+            screen.page = page
+            return screen
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = PageBinding.inflate(inflater, container, false)
