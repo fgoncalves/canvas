@@ -2,6 +2,10 @@
 
 A small app that let's you try out the palette api on different images and apply the colours to the status bar.
 
+![Phone](/imgs/phone.gif?raw=true "Phone")
+
+![Tablet](/imgs/tablet.gif?raw=true "Tablet")
+
 ## Motivation
 
 This idea came to me when there was a need to come up with a colour for the status bar when the background has a predominant image.
